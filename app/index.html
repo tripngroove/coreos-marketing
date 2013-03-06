@@ -1,0 +1,52 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <title></title>
+        <meta name="description" content="">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+        <link rel="stylesheet" href="styles/main.css">
+        <!-- build:js scripts/vendor/modernizr.js -->
+        <script src="components/modernizr/modernizr.js"></script>
+        <!-- endbuild -->
+    </head>
+    <body>
+        <div class="container">
+		<div class="masthead">
+			<h3>CoreOS <small>A lil' Linux for the modern server</small></h3>
+		</div>
+			<p>Cloud has dramatically changed how we manage compute resources, but we have not changed how we manage Linux itself. CoreOS is a new Linux distro, built specifically for cloud and devops- with security, speed, and automation in mind. We borrow a lot of our philosophies from the browsers. Remember, every browser needs a server. Our the primary design tenets of CoreOS are: </p>
+			<ul>
+				<li><strong>Security.</strong> The biggest improvement to web security to-date happened when the browsers began shipping automatic updates. Leaning on the frameworks built by ChromeOS, we automatically update the kernel, init system, and base libraries on behalf of the user. Also similar to how the browsers handle sandboxing tabs, we deploy every process into its own container. 
+				<li><strong>Speed and Efficiency.</strong> Focusing just on server, we are able to get boot times down to under 1000ms. We optimize for memory and disk footprint, currently at 25mb and 50mb respectively. Our kernel is tuned specifically for the most commonly used virtual environments. </li>
+				<li><strong>Automation.</strong> Configuration management is a must for any sophisticated architecture, but most users of currently available systems are not satisfied. Our approach is to put REST APIs natively into the OS, in order to more easily build higher level management systems. </li>
+			</ul>
+			<h4>Architecture</h4>
+			<p>CoreOS is a fork of <a href="http://www.chromium.org/chromium-os">ChromiumOS</a>. We started by replacing ChromiumOS's upstart based init system with <a href="http://www.freedesktop.org/wiki/Software/systemd">systemd</a>, and then tuned the packages required for server. The automatic update mechanism is a minimally modified version of what ships with ChromiumOS. From there, we layer in our own golang based REST APIs for managing the host, which interact with systemd via D-Bus.</p>
+			<h4>Developer SDK</h4>
+			<p>Check out our <a href="https://coreos.github.com/">developer docs</a> on Github. You can find all of our <a href="https://github.com/coreos">source code</a> there too.</p>
+        </div>
+
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+        <![endif]-->
+
+        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+        <script>
+            var _gaq=[['_setAccount','UA-XXXXX-X'],['_trackPageview']];
+            (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+            g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+            s.parentNode.insertBefore(g,s)}(document,'script'));
+        </script>
+
+        <!-- build:js scripts/main.js -->
+        <script data-main="scripts/main" src="components/requirejs/require.js"></script>
+        <!-- endbuild -->
+</body>
+</html>
