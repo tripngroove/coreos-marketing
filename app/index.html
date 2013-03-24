@@ -21,11 +21,11 @@
 		<div class="masthead">
 			<h3>CoreOS <small>Linux for the modern server</small></h3>
 		</div>
-			<p>Cloud changed how we get and pay for compute resources, but we have not changed how we manage Linux itself. CoreOS is a new Linux distro, built specifically for cloud and devops- with security, speed, and automation in mind. We borrow a lot of our philosophies from the browsers. The primary design tenets of CoreOS are: </p>
+			<p>Cloud changed how we get and pay for compute resources, but we have not changed how we manage Linux itself. CoreOS is a new Linux distro, built specifically with security, speed, and automation in mind. We borrow a lot of our philosophies from the browsers. The primary design tenets of CoreOS are: </p>
 			<ul>
 				<li><strong>Security.</strong> The biggest improvement to web security to-date happened when the browsers began shipping automatic updates. Leaning on the frameworks built by ChromeOS, we automatically update the kernel, init system, and base libraries on behalf of the user. Also similar to how the browsers handle sandboxing tabs, we deploy every process into its own LXC container. 
 				<li><strong>Speed and Efficiency.</strong> Focusing just on server, we are able to get boot times down to under 1000ms. We optimize for memory and disk footprint, currently at 25mb and 50mb respectively. Our kernel is tuned specifically for the most commonly used virtual environments. </li>
-				<li><strong>Automation.</strong> Configuration management is a must once you have more than a few servers, but puppet and chef are hard to get right! Our approach is to put REST APIs natively into the OS, allowing you to start/stop services, deploy new versions of your app, or integrate whatever management system on top that you choose.</li>
+				<li><strong>Automation.</strong> Configuration management is a must once you have more than a few servers, but puppet and chef are difficult to maintain in a complex environment. Our approach is to put REST APIs natively into the OS, allowing you to start/stop services, deploy new versions of your app, or integrate whatever management system on top that you choose.</li>
 			</ul>
 			<h4>Architecture</h4>
 			<p>CoreOS is a fork of <a href="http://www.chromium.org/chromium-os">ChromiumOS</a>. We started by replacing ChromiumOS's upstart based init system with <a href="http://www.freedesktop.org/wiki/Software/systemd">systemd</a>, and then tuned the packages required for server. The automatic update mechanism is a minimally modified version of what ships with ChromiumOS. From there, we layer in our own golang based REST APIs for managing the host, which interact with systemd via D-Bus.</p>
