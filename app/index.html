@@ -3,48 +3,94 @@
 <!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title></title>
-        <meta name="description" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
-        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-        <link rel="stylesheet" href="styles/main.css">
-        <!-- build:js scripts/vendor/modernizr.js -->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- build:js scripts/vendor/modernizr.js -->
         <script src="components/modernizr/modernizr.js"></script>
-        <!-- endbuild -->
-    </head>
-    <body>
+    <!-- endbuild -->
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600,700" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+      
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            <a href="index.html" class="brand">
+              <img src="images/coreos-mark-30px.png" alt="CoreOS">
+              <span class="wordmark-core">Core</span><span class="wordmark-o">O</span><span class="wordmark-s">S</span>
+            </a>
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                <li class="active"><a href="index.html">About</a></li>
+                <li><a href="template-docs.html">Guides</a></li>
+                <li><a href="#">API</a></li>
+                <li><a href="#">Commmunity</a></li>
+              </ul>
+            </div><!--/.nav-collapse-->
+          
+        </div><!--/.navbar-inner-->
+      </div><!--/.navbar-->
+
+      <div class="header masthead circuits-yo">
         <div class="container">
-		
-			<img src="images/coreos-wordmark-horiz-color.png" alt="CoreOS">
-			<p>CoreOS is an enterprise Linux distribution that dramatically improves security and speed of application deployment. It is intended to be used in large scale computing environments, based on virtual machines or commodity hardware. </p>
+            <h1>
+              Linux for Large-Scale Computing
+            </h1>
+            <a href="" class="btn btn-large btn-primary">Get Started</a>
+        </div><!--/.container-->
+      </div><!--/.header-->
+      
+      <div class="container">
+        <h1>Typography Test</h1>
+        <p>CoreOS is an enterprise Linux distribution that dramatically improves security and speed of application deployment. It is intended to be used in large scale computing environments, based on virtual machines or commodity hardware. </p>
+        <h2>Another Heading (2)</h2>
+        <p>Authentic ethical organic, sed tempor enim roof party nihil pariatur. 90's ut beard, fap duis Godard farm-to-table non ullamco hashtag deserunt Carles laboris cray.</p>
+        <h3>3: More Heading Action</h3>
+        <p> Brunch yr keytar, voluptate polaroid aesthetic asymmetrical umami fashion axe culpa mixtape chambray placeat McSweeney's. Meggings squid disrupt, gluten-free letterpress synth pork belly consectetur plaid nesciunt mollit 8-bit. Chillwave Brooklyn accusamus pitchfork.</p>
+        
+        <p><code>
+            repo init -u https://github.com/coreos/manifest.git -g minilayout --repo-url  https://git.chromium.org/git/external/repo.git
+        </code></p>
+        
+        <p> Brunch yr keytar, voluptate polaroid aesthetic asymmetrical umami fashion axe culpa mixtape chambray placeat McSweeney's. Meggings squid disrupt, gluten-free letterpress synth pork belly consectetur plaid nesciunt mollit 8-bit. Chillwave Brooklyn accusamus pitchfork.</p>
+        <p>Street art enim sint cray. Vinyl gastropub duis meggings anim pork belly. Bespoke fugiat Brooklyn, cillum vero McSweeney's sapiente bicycle <code>foo bar baz qux</code> rights raw denim non sartorial pour-over banjo ea. </p>
+        <p>In Marfa butcher Portland ennui kogi. Elit chillwave incididunt, blue bottle cornhole iPhone twee.</p> 
+        <P>Brunch anim mlkshk, duis Portland fap velit scenester pug trust fund culpa. Austin vinyl craft beer, before they sold out kale chips consequat salvia assumenda.</p>
 
-			<small>
-		<p>For inquiries: <a href="mailto:sales@coreos.com">sales@coreos.com</a><br/>
-		For developers: <a href="http://dev.coreos.com/">docs</a> | <a href="https://groups.google.com/forum/#!forum/coreos-dev">mailing list</a> | freenode#coreos</p>
-		</small>
-        </div>
+        <small>
+          <p>For inquiries: <a href="mailto:sales@coreos.com">sales@coreos.com</a><br/>
+          For developers: <a href="http://dev.coreos.com/">docs</a> | <a href="https://groups.google.com/forum/#!forum/coreos-dev">mailing list</a> | freenode#coreos</p>
+        </small>
+          
+      </div><!--/.container-->
 
-        <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
-        <![endif]-->
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-  ga('create', 'UA-40278016-1', 'coreos.com');
-  ga('send', 'pageview');
-        </script>
-
-        <!-- build:js scripts/main.js -->
-        <script data-main="scripts/main" src="components/requirejs/require.js"></script>
-        <!-- endbuild -->
-</body>
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-40278016-1', 'coreos.com');
+      ga('send', 'pageview');
+    </script>
+    <!-- build:js scripts/main.js -->
+    <script data-main="scripts/main" src="components/requirejs/require.js"></script>
+    <!-- endbuild -->
+  </body>
 </html>

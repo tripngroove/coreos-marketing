@@ -1,0 +1,328 @@
+<!doctype html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" href="styles/main.css">
+    <!-- build:js scripts/vendor/modernizr.js -->
+        <script src="components/modernizr/modernizr.js"></script>
+    <!-- endbuild -->
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600,700" rel="stylesheet" type="text/css">
+  </head>
+  <body>
+      
+      <div class="navbar navbar-fixed-top">
+        <div class="navbar-inner">
+          
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </a>
+            <a href="index.html" class="brand">
+              <img src="images/coreos-mark-30px.png" alt="CoreOS">
+              <span class="wordmark-core">Core</span><span class="wordmark-o">O</span><span class="wordmark-s">S</span>
+            </a>
+            <div class="nav-collapse collapse">
+              <ul class="nav">
+                <li><a href="index.html">About</a></li>
+                <li class="active"><a href="#">Guides</a></li>
+                <li><a href="#">API</a></li>
+                <li><a href="#">Commmunity</a></li>
+              </ul>
+            </div><!--/.nav-collapse-->
+          
+        </div><!--/.navbar-inner-->
+      </div><!--/.navbar-->
+
+      <div class="container-fluid">
+        <div class="row-fluid">
+          <div class="span3">
+
+            <ul id="docs-nav" class="nav nav-list affix" data-spy="affix" data-offset-top="200">
+              <li class="nav-header">Getting Started</li>
+              <li><a href="#depot">Install depot_tools</a></li>
+              <li><a href="#sdk">Bootstrap SDK chroot</a></li>
+              <li><a href="">Build Image</a></li>
+              <li><a href="">Boot Image</a></li>
+              <li class="nav-header">Making Changes</li>
+              <li class="nav-header">Development Workflows</li>
+              <li class="nav-header">Production Workflows</li>
+              <li class="nav-header">Tips &amp; Tricks</li>
+              <li class="nav-header">Known Issues</li>
+              <li class="nav-header">Constants &amp; IDs</li>
+            </ul>
+            
+          </div><!--/.span2-->
+          <div class="span9">
+
+            <p><a href="http://www.coreos.com">CoreOS</a> uses the tooling built for Google Chromium OS. Therefore, if
+            in doubt check out the <a href="http://www.chromium.org/chromium-os/developer-guide">Chromium OS Developer Guide</a>.</p>
+
+            <p>If you find bugs or need help send an email to our <a href="https://groups.google.com/forum/#!forum/coreos-dev">mailing list</a>.</p>
+
+            <h1>Developer Guide</h1>
+
+            <h2>Getting Started</h2>
+
+            <p>Let&#39;s get set up with an SDK chroot and build a bootable image of Core OS. The SDK chroot has a full toolchain and isolates the build process from quirks and differences between host OSes.</p>
+
+            <h3>Install depot_tools</h3><a name="depot"></a>
+
+            <p>Repo, one of the <code>depot_tools</code>, helps to manage the collection of git repositories that makes up CoreOS. Pull down the code and add it to your path:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git export PATH=&quot;$PATH&quot;:`pwd`/depot_tools</code></pre></div>
+            <p>You may want to add this to your .bashrc or /etc/profile.d/ so that you don’t need to reset your $PATH manually each time you open a new shell.</p>
+
+            <h3>Bootstrap the SDK chroot</h3><a name="sdk"></a>
+
+            <p>Create a project directory. This will hold all of your git repos and the SDK chroot. A few gigs of space will be necessary.</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">mkdir coreos; cd coreos</code></pre></div>
+            <p>Initialize the .repo directory with the manifest that describes all of the git repos required to get started.</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">repo init -u https://github.com/coreos/manifest.git -g minilayout --repo-url  https://git.chromium.org/git/external/repo.git</code></pre></div>
+            <p>Synchronize all of the required git repos from the manifest.</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">repo sync</code></pre></div>
+            <h3>Building an image</h3>
+
+            <p>Download and enter the SDK chroot which contains all of the compilers and
+            tooling.</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">./chromite/bin/cros_sdk</code></pre></div>
+            <p><strong>WARNING:</strong> If you ever need to delete the SDK chroot use
+            <code>./chromite/bin/cros_sdk --delete</code>. Otherwise, you will delete <code>/dev</code>
+            entries that are bind mounted into the chroot.</p>
+
+            <p>Set up the &quot;core&quot; user&#39;s password.</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">./set_shared_user_password.sh</code></pre></div>
+            <p>Target amd64-generic for this image:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">export BOARD=amd64-generic</code></pre></div>
+            <p>Setup a board root filesystem in /build/${BOARD}:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">./setup_board --board=${BOARD}</code></pre></div>
+            <p>Build all of the target binary packages:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">./build_packages --board=${BOARD}</code></pre></div>
+            <p>Build an image based on the built binary packages along with the developer
+            overlay:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">./build_image --board=${BOARD} --noenable_rootfs_verification dev</code></pre></div>
+            <p>After this finishes up commands for converting the raw bin into
+            a bootable vm will be printed. Run the <code>image_to_vm.sh</code> command.</p>
+
+            <h3>Booting</h3>
+
+            <p>Once you build an image you can launch it with KVM (instructions will
+            print out after <code>image_to_vm.sh</code> runs).</p>
+
+            <p>To demo the general direction we are starting in now the OS starts two
+            small daemons that you can access over an HTTP interface. The first,
+            systemd-rest, allows you to stop and stop units via HTTP. The other is a
+            small server that you can play with shutting off and on called
+            motd-http. You can try these daemons with:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">curl http://127.0.0.1:8000
+            curl http://127.0.0.1:8080/units/motd-http.service/stop/replace
+            curl http://127.0.0.1:8000
+            curl http://127.0.0.1:8080/units/motd-http.service/start/replace</code></pre></div>
+            <h2>Making Changes</h2>
+
+            <h3>git and repo</h3>
+
+            <p>CoreOS is managed by <code>repo</code>. It was built for the Android project and makes
+            managing a large number of git repos easier, from the announcement blog:</p>
+
+            <blockquote>
+            <p>The repo tool uses an XML-based manifest file describing where the upstream
+            repositories are, and how to merge them into a single working checkout. repo
+            will recurse across all the git subtrees and handle uploads, pulls, and other
+            needed items. repo has built-in knowledge of topic branches and makes working
+            with them an essential part of the workflow.
+            -- via the <a href="http://google-opensource.blogspot.com/2008/11/gerrit-and-repo-android-source.html">Google Open Source Blog</a></p>
+            </blockquote>
+
+            <p>You can find the full manual for repo by visiting <a href="http://source.android.com/source/version-control.html">Version Control with Repo and Git</a>.</p>
+
+            <h3>Updating repo manifests</h3>
+
+            <p>The repo manifest for CoreOS lives in a git repository in
+            <code>.repo/manifests</code>. If you need to update the manifest edit <code>default.xml</code>
+            in this directory.</p>
+
+            <p><code>repo</code> uses a branch called &#39;default&#39; to track the upstream branch you
+            specify in <code>repo init</code>, this defaults to &#39;origin/master&#39;. Keep this in
+            mind when making changes, the origin git repository should not have a
+            &#39;default&#39; branch.</p>
+
+            <h2>Development Workflows</h2>
+
+            <h3>Updating Packages on an Image</h3>
+
+            <p>Building a new VM image is time consuming process. On development images you
+            can use <code>gmerge</code> to build packages on your workstation and ship them to your
+            target VM.</p>
+
+            <ol>
+            <li>On your workstation start the dev server inside the SDK chroot:</li>
+            </ol>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">start_devserver --port 8080</code></pre></div>
+            <p>NOTE: This port will need to be internet accessible.</p>
+
+            <ol>
+            <li>Run /usr/local/bin/gmerge from your VM and ensure that the settings in
+            <code>/etc/lsb-release</code> point to your workstation IP/hostname and port</li>
+            </ol>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">/usr/local/bin/gmerge coreos-base/update_engine</code></pre></div>
+            <h3>Updating an Image with Update Engine</h3>
+
+            <p>If you want to test that an image you built can successfully upgrade a running
+            VM you can use the <code>--image</code> argument to the devserver. Here is an example:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">start_devserver --image ../build/images/amd64-generic/latest/chromiumos_image.bin</code></pre></div>
+            <p>From the target virtual machine you run:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">update_engine_client -update -omaha_url $WORKSTATION_HOSTNAME:8080</code></pre></div>
+            <p>If the update fails you can check the logs of the update engine by running:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">journalctl -u update-engine -o cat</code></pre></div>
+            <p>If you want to download another update you may need to clear the reboot
+            pending status:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">update_engine_client -reset_status</code></pre></div>
+            <h3>Updating portage-stable ebuilds from Gentoo</h3>
+
+            <p>There is a utility script called <code>update_ebuilds</code> that can pull from Gentoo&#39;s
+            CVS tree directly into your local portage-stable tree. Here is an example usage
+            bumping go to the latest version:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">./update_ebuilds --commit dev-lang/go</code></pre></div>
+            <p>To create a Pull Request after the bump run:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">cd ~/trunk/src/third_party/portage-stable
+            git checkout -b &#39;bump-go&#39;
+            git push &lt;your remote&gt; bump-go</code></pre></div>
+            <h2>Production Workflows</h2>
+
+            <h3>Building a Production Image</h3>
+
+            <p>This will build an image that can be ran under KVM and uses near production
+            values. An actual production image will have the production update signing key
+            inserted after the build. Note: <code>COREOS_OFFICIAL=1</code> is included here
+            for completeness but unless you actually are releasing this image leave
+            it out. It just changes the version and enables uploads by default.</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">COREOS_OFFICIAL=1 ./build_image prod --board=${BOARD}</code></pre></div>
+            <p>The generated production image is bootable as-is by qemu but for a
+            larger STATE partition or VMware images use <code>image_to_vm.sh</code> as
+            described in the final output of <code>build_image1</code>.</p>
+
+            <h3>Pushing updates to the dev-channel (manual builds)</h3>
+
+            <p>To push an update to the dev channel track on api.core-os.net build a
+            production images as described above and then use the following tool:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">COREOS_OFFICIAL=1 ./core_upload_update &lt;required flags&gt; --track dev-channel --image ../build/images/amd64-generic/latest/coreos_production_image.bin</code></pre></div>
+            <h3>Pushing updates to the dev-channel (automated builds)</h3>
+
+            <p>The automated build host does not have access to production signing keys
+            so the final signing and push to api.core-os.net must be done elsewhere.
+            The <code>au-generator.zip</code> archive provides the tools required to do this so
+            a full SDK setup is not required. This does require gsutil to be
+            installed and configured.</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">URL=gs://storage.core-os.net/coreos/amd64-generic/0000.0.0
+            cd $(mktemp -d)
+            gsutil cp $URL/au-generator.zip $URL/coreos_production_image.bin.bz2 ./
+            unzip au-generator.zip
+            bunzip2 coreos_production_image.bin.bz2
+            COREOS_OFFICIAL=1 ./core_upload_update &lt;required flags&gt; --track dev-channel --image coreos_production_image.bin</code></pre></div>
+            <h2>Tips and Tricks</h2>
+
+            <h3>Searching all repo code</h3>
+
+            <p>Using <code>repo forall</code> you can search across all of the git repos at once:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">repo forall -c  git grep &#39;CONFIG_EXTRA_FIRMWARE_DIR&#39;</code></pre></div>
+            <h3>Caching git https passwords</h3>
+
+            <p>Note: You need git 1.7.10 or newer to use the credential helper</p>
+
+            <p>Turn on the credential helper and git will save your password in memory
+            for some time:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">git config --global credential.helper cache</code></pre></div>
+            <p>Why doesn&#39;t CoreOS use SSH in the git remotes? Because, we can&#39;t do
+            anonymous clones from github with a ssh URL. In the future we will fix
+            this.</p>
+
+            <h3>Base system dependency graph</h3>
+
+            <p>Get a view into what the base system will contain and why it will contain those
+            things with the emerge tree view:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">emerge-amd64-generic  --emptytree  -p -v --tree  coreos-base/coreos-dev</code></pre></div>
+            <h3>SSH Config</h3>
+
+            <p>You will be booting lots of VMs with on the fly ssh key generation. Add
+            this in your <code>$HOME/.ssh/config</code> to stop the annoying fingerprint warnings.</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">Host 127.0.0.1
+              StrictHostKeyChecking no
+              UserKnownHostsFile /dev/null
+              User core
+              LogLevel QUIET</code></pre></div>
+            <h3>Setting a default ${BOARD}</h3>
+
+            <p>If you find using --board tiresome, particularly since amd64-generic is our
+            target right now, you can set it as the default for all those scripts:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">echo amd64-generic &gt; ~/trunk/src/scripts/.default_board</code></pre></div>
+            <h3>Hide loop devices from desktop environments</h3>
+
+            <p>By default desktop environments will diligently display any mounted devices
+            including loop devices used to contruct CoreOS disk images. If the daemon
+            responsible for this happens to be <code>udisks</code> then you can disable this
+            behavior with the following udev rule:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">echo &#39;SUBSYSTEM==&quot;block&quot;, KERNEL==&quot;ram*|loop*&quot;, ENV{UDISKS_PRESENTATION_HIDE}=&quot;1&quot;, ENV{UDISKS_PRESENTATION_NOPOLICY}=&quot;1&quot;&#39; &gt; /etc/udev/rules.d/85-hide-loop.rules
+            udevadm control --reload</code></pre></div>
+            <h3>Leaving developer mode</h3>
+
+            <p>Some daemons act differently in &quot;dev mode&quot;. For example update<em>engine refuses
+            to auto-update or connect to HTTPS URLs. If you need to test something out of
+            dev</em>mode on a vm you can do the following:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">mv /root/.dev_mode{,.old}</code></pre></div>
+            <p>If you want to permanently leave you can run the following:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">crossystem disable_dev_request=1; reboot</code></pre></div>
+            <h2>Known Issues</h2>
+
+            <h3>build_packages fails on coreos-base</h3>
+
+            <p>Sometimes coreos-dev or coreos builds will fail in <code>build_packages</code> with a
+            backtrace pointing to <code>epoll</code>. This hasn&#39;t been tracked down but running
+            <code>build_packages</code> again should fix it. The error looks something like this:</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">Packages failed:
+                    coreos-base/coreos-dev-0.1.0-r63
+                    coreos-base/coreos-0.0.1-r187</code></pre></div>
+            <h2>Constants and IDs</h2>
+
+            <h3>CoreOS App ID</h3>
+
+            <p>This UUID is used to identify CoreOS to the update service and elsewhere.</p>
+            <div class="highlight"><pre><code class="text language-text" data-lang="text">e96281a6-d1af-4bde-9a0a-97b76e56dc57</code></pre></div>
+            <h3>GPT UUID Types</h3>
+
+            <ul>
+            <li>CoreOS Root: 5dfbf5f4-2848-4bac-aa5e-0d9a20b745a6</li>
+            <li>CoreOS Reserved: c95dc21a-df0e-4340-8d7b-26cbfa9a03e0</li>
+            </ul>
+
+          </div><!--/.span10-->
+        </div><!--/.row-fluid-->
+      </div><!--/.container-fluid-->
+
+
+    <!--[if lt IE 7]>
+        <p class="chromeframe">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">activate Google Chrome Frame</a> to improve your experience.</p>
+    <![endif]-->
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+      ga('create', 'UA-40278016-1', 'coreos.com');
+      ga('send', 'pageview');
+    </script>
+    <!-- build:js scripts/main.js -->
+    <script data-main="scripts/main" src="components/requirejs/require.js"></script>
+    <!-- endbuild -->
+  </body>
+</html>

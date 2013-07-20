@@ -1,7 +1,99 @@
 @import 'sass-bootstrap/lib/bootstrap';
 
-.hero-unit {
-    margin: 50px auto 0 auto;
-    width: 300px;
-    width: 350px;
+/*COLOR VARIABLES*/
+$red: 			rgba(240,95,109,1);
+$red-light: 	lighten($red, 25%);
+$red-lighter: 	lighten($red, 50%);
+$red-dark: 	 	darken($red, 25%);
+$red-darker: 	darken($red, 50%);
+
+$green: 		rgba(130,198,146,1);
+$green-light: 	lighten($green, 25%);
+$green-lighter: lighten($green, 50%);
+$green-dark: 	darken($green, 25%);
+$green-darker: 	darken($green, 50%);
+
+$blue: 			rgba(81,164,218,1);
+$blue-light: 	lighten($blue, 25%);
+$blue-lighter: 	lighten($blue, 50%);
+$blue-dark: 	darken($blue, 25%);
+$blue-darker: 	darken($blue, 50%);
+
+$grey: 			rgba(0,0,0,0.75);
+$black: 		rgba(0,0,0,1);
+$white: 		rgba(255,255,255,1);
+
+/*TEXT COLOR*/
+.red { color:$red; }
+.blue { color:$blue; }
+.green { color:$green; }
+.grey { color:$gray; }
+.black { color:$black; }
+.white { color:$white; }
+
+/*TYPOGRAPHY VARIABLES*/
+$font-primary:"Source Sans Pro", sans-serif;
+$font-code:"Source Code Pro", monospace;
+
+/*TYPOGRAPHY*/
+body { font-family:$font-primary; font-size:16px; font-weight:400; color:$gray; padding-top:60px; line-height:24px;}
+h1 { font-weight:600; color:$gray; }
+h2 { font-weight:600; color:$blue; }
+h3 { font-weight:400; color:$red; }
+h4 {}
+h5 {}
+h6 {}
+pre, code { font-family:$font-code; color:$black; display:inline-block; font-size:14px; }
+pre {  margin:10px 0 20px; padding:10px; }
+code {  }
+
+.wordmark-core { color:$gray; font-weight:600; }
+.wordmark-o { color:$red; font-weight:300; }
+.wordmark-s { color:$blue; font-weight:300; }
+
+/*NAVBAR*/
+.navbar {
+	.wordmark { text-shadow: 0 1px 0 white; }
+	.brand { padding:15px 20px 15px 40px; 
+		img { -webkit-filter: drop-shadow(0 1px 0 white); }
+	}
+	.nav > li > a { padding: 20px; }
+}
+.navbar-inner { min-height:60px; }
+
+/*MASTHEAD*/
+.masthead { margin:0 0 20px 0; padding:60px 0 40px; background:$blue; background-repeat:no-repeat; background-position:center; text-align:center; }
+.masthead h1 { font-size:60px; font-weight:700; color:$white; letter-spacing:-.04em; text-shadow:1px 1px 2px rgba(0,0,0,0.25); }
+.masthead .btn { margin-top:24px; }
+
+/*MASTHEAD ILLUSTRATIONS*/
+.coreos-core { background-image:url(../images/illustrations/coreos-core.png), linear-gradient(30deg, $black, $blue); }
+.network-map { background-image:url(../images/illustrations/network-map.png), linear-gradient(30deg, $black, $blue); }
+.core-sample { background-image:url(../images/illustrations/core-sample.png), linear-gradient(30deg, $black, $blue); }
+.giant-drill { background-image:url(../images/illustrations/giant-drill.png), linear-gradient(30deg, $black, $blue); }
+.circuits-yo { background-image:url(../images/illustrations/circuits-yo.png), linear-gradient(30deg, $black, $blue); }
+
+/*BUTTON OVERRIDES*/
+.btn-primary {
+  background-color: $blue;
+  background-image: -moz-linear-gradient(top, $blue, $blue-dark);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from($blue), to($blue-dark));
+  background-image: -webkit-linear-gradient(top, $blue, $blue-dark);
+  background-image: -o-linear-gradient(top, $blue, $blue-dark);
+  background-image: linear-gradient(to bottom, $blue, $blue-dark);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FF0088CC', endColorstr='#FF0044CC', GradientType=0);
+  border-color: $blue-dark $blue-dark $blue-light;
+  border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) $blue-dark;
+  *background-color: $blue-dark;
+  /* Darken IE7 buttons by default so they stand out more given they won't have borders */
+  filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
+}
+.btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] {
+  color: white;
+  background-color: $blue-dark;
+  *background-color: $blue-dark;
+}
+.btn-primary:active, .btn-primary.active {
+  background-color: $blue-dark \9;
 }
