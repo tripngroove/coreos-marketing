@@ -7,6 +7,18 @@ $red-lighter: 	lighten($red, 50%);
 $red-dark: 	 	darken($red, 25%);
 $red-darker: 	darken($red, 50%);
 
+$orange: 		rgba(240,154,98,1);
+$orange-light: 	lighten($orange, 25%);
+$orange-lighter:lighten($orange, 50%);
+$orange-dark: 	darken($orange, 25%);
+$orange-darker: darken($orange, 50%);
+
+$yellow: 		rgba(242,233,102,1);
+$yellow-light: 	lighten($yellow, 25%);
+$yellow-lighter:lighten($yellow, 50%);
+$yellow-dark: 	darken($yellow, 25%);
+$yellow-darker: darken($yellow, 50%);
+
 $green: 		rgba(130,198,146,1);
 $green-light: 	lighten($green, 25%);
 $green-lighter: lighten($green, 50%);
@@ -18,6 +30,12 @@ $blue-light: 	lighten($blue, 25%);
 $blue-lighter: 	lighten($blue, 50%);
 $blue-dark: 	darken($blue, 25%);
 $blue-darker: 	darken($blue, 50%);
+
+$purple: 		rgba(161,130,164,1);
+$purple-light: 	lighten($purple, 25%);
+$purple-lighter:lighten($purple, 50%);
+$purple-dark: 	darken($purple, 25%);
+$purple-darker: darken($purple, 50%);
 
 $grey: 			rgba(0,0,0,0.75);
 $black: 		rgba(0,0,0,1);
@@ -71,7 +89,10 @@ code {  }
 .network-map { background-image:url(../images/illustrations/network-map.png), linear-gradient(30deg, $black, $blue); }
 .core-sample { background-image:url(../images/illustrations/core-sample.png), linear-gradient(30deg, $black, $blue); }
 .giant-drill { background-image:url(../images/illustrations/giant-drill.png), linear-gradient(30deg, $black, $blue); }
-.circuits-yo { background-image:url(../images/illustrations/circuits-yo.png), linear-gradient(30deg, $black, $blue); }
+.circuits-yo { background-image:url(../images/illustrations/circuits-yo.png), linear-gradient(30deg, $purple-dark, $blue-dark); }
+
+/*DOCS SIDENAV*/
+.docs-sidenav { border-right:1px solid $grey; }
 
 /*BUTTON OVERRIDES*/
 .btn-primary {
